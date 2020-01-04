@@ -1,0 +1,8 @@
+*.idea
+/venv_gest_prod
+.env
+*.sqlite3
+/__pycache__/
+*.pyc
+*.pyo
+/media
