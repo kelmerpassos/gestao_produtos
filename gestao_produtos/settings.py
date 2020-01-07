@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'providers',
     'lots',
     'products',
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [
@@ -123,8 +124,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIR = [
-    'static',
+STATICFILES_DIRS = [
+    'public',
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

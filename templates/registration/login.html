@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap %}
+{% block title %}
+    Login
+{% endblock %}
+{% block links %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Entrar</h5>
+            <form class="form-signin">
+              {% csrf_token %}
+              {{ form|bootstrap }}
+              <hr class="my-4">
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Entrar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
