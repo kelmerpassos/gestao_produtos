@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block submain %}
+    <div class="container">
+        <a href="{% url 'new_products' %}" class="btn btn-primary">Criar Novo Produto</a>
+    </div>
+    <article class="mt-5">
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>nome</th>
+            </thead>
+            <tbody>
+                <td>1</td>
+                <td>2</td>
+            </tbody>
+        </table>
+    </article>
+{% endblock %}

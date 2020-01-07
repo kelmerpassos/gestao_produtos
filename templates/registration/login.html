@@ -14,7 +14,7 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Entrar</h5>
-            <form class="form-signin">
+            <form class="form-signin" method="post">
               {% csrf_token %}
               {{ form|bootstrap }}
               <hr class="my-4">

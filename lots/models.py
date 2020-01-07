@@ -7,19 +7,19 @@ class InputLot(models.Model):
     number_input = models.IntegerField(unique=True)
     quantity = models.IntegerField()
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    creatad_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.number_input
+        return str(self.number_input)
 
 
 class OutputLot(models.Model):
     number_output = models.IntegerField(unique=True)
     quantity = models.IntegerField()
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    creatad_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.number_output
+        return str(self.number_output)
 
 
