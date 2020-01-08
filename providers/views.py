@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 
+from providers.forms import ProviderForm
 from providers.models import Provider
 
 
@@ -9,12 +10,23 @@ def list_providers(request):
 
 
 def new_providers(request):
-    pass
+    form = ProviderForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        redirect('list_providers')
+    return render(request, 'generic_form.html', {'form': form})
 
 
-def update_providers(request):
-    pass
+def update_providers(request, id):
+    provider = get_object_or_404(Provider, pk=id)
+    form = ProviderForm(request.POST or None, instance=provider)
+    if form.is_valid():
+        form.save()
+        redirect('list_providers')
+    return render(request, 'generic_form.html', {'form': form})
 
 
-def delete_providers(request):
-    pass
+def delete_providers(request, id):
+    provider = get_object_or_404(Provider, pk=id)
+    provider.delete()
+    redirect('list_providers')

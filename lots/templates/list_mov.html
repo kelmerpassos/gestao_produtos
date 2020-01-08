@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block submain %}
+    <div class="container">
+        <a href="{% url 'new_lots' %}" class="btn btn-primary">Criar Novo Lote</a>
+    </div>
+    <article class="mt-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in datas %}
+                    <tr>
+                        <td>{{ data.type }}</td>
+                        <td>{{ data.product }}</td>
+                        <td>{{ data.quant }}</td>
+                        <td>{{ data.created_at }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </article>
+{% endblock %}

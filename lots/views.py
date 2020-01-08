@@ -3,27 +3,31 @@ from django.shortcuts import render
 from lots.models import InputLot, OutputLot
 
 
-def include_value(list, value, is_input):
+def include_value(datas, value, is_input):
     if is_input:
-        dado = {
+        data = {
             'type': 'entrada',
             'quant': value.quantity,
             'created_at': value.created_at,
             'product': value.product.name,
         }
-        list.append(dado)
+        datas.append(data)
     else:
-        dado = {
+        data = {
             'type': 'saida',
             'quant': value.quantity,
             'created_at': value.created_at,
             'product': value.product.name,
         }
-        list.append(dado)
+        datas.append(data)
 
 
-def list_lots(request):
-    dados = []
+def saldo_mov(request):
+    pass
+
+
+def list_mov(request):
+    datas = []
     i = 0
     o = 0
     inputs = InputLot.objects.order_by('-created_at')
@@ -33,18 +37,18 @@ def list_lots(request):
     for u in range(quant_out + quant_in):
         if o < quant_out and i < quant_in:
             if inputs[i].created_at > outputs[o].created_at:
-                include_value(dados, inputs[i], True)
+                include_value(datas, inputs[i], True)
                 i += 1
             else:
-                include_value(dados, outputs[o], False)
+                include_value(datas, outputs[o], False)
                 o += 1
         elif i < quant_in:
-            include_value(dados, inputs[i], True)
+            include_value(datas, inputs[i], True)
             i += 1
         elif o < quant_out:
-            include_value(dados, outputs[o], False)
+            include_value(datas, outputs[o], False)
             o += 1
-    return render(request, 'list_lots.html', {'data': dados})
+    return render(request, 'list_mov.html', {'data': datas})
 
 
 def new_lots(request):

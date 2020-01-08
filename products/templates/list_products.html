@@ -1,18 +1,25 @@
 {% extends 'index.html' %}
-
 {% block submain %}
     <div class="container">
         <a href="{% url 'new_products' %}" class="btn btn-primary">Criar Novo Produto</a>
     </div>
     <article class="mt-5">
         <table class="table">
-            <thead>
-                <th>#</th>
-                <th>nome</th>
+            <thead class="bg-primary text-light">
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Fornecedor</th>
+                </tr>
             </thead>
             <tbody>
-                <td>1</td>
-                <td>2</td>
+                {% for product in products %}
+                    <tr>
+                        <td><a href="{% url 'update_products' product.id %}">{{ product.code }}</a></td>
+                        <td><a href="{% url 'update_products' product.id %}">{{ product.name }}</a></td>
+                        <td><a href="{% url 'update_products' product.id %}">{{ product.provider.name }}</a></td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </article>

@@ -6,13 +6,21 @@
     </div>
     <article class="mt-5">
         <table class="table">
-            <thead>
-                <th>#</th>
-                <th>nome</th>
+            <thead class="bg-primary text-light">
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>CNPJ</th>
+                </tr>
             </thead>
             <tbody>
-                <td>1</td>
-                <td>2</td>
+                {% for provider in providers %}
+                    <tr>
+                        <td><a href="{% url 'update_providers' provider.id %}">{{provider.id}}</td>
+                        <td><a href="{% url 'update_providers' provider.id %}">{{provider.name}}</td>
+                        <td><a href="{% url 'update_providers' provider.id %}">{{provider.cnpj}}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </article>
