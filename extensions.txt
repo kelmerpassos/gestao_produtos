@@ -1,4 +1,5 @@
 bookmarks
+Bootstrap-4...
 bracket-pair-colored
 git-lens
 vscode-faker
@@ -10,3 +11,8 @@ eslint
 git-history
 importmagic
 path-intellisense
+JavaScript-code-snippets
+jquery-code-snippets
+Python
+Rainglow
+vscode-database
