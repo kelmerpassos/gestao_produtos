@@ -1,0 +1,10 @@
+bookmarks
+bracket-pair-colored
+git-lens
+vscode-faker
+TODO-parser
+minify
+live-server
+vscode-icons
+eslint
+git-history
