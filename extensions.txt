@@ -9,3 +9,4 @@ vscode-icons
 eslint
 git-history
 importmagic
+path-intellisense
