@@ -6,17 +6,17 @@ from lots.models import InputLot, OutputLot
 def include_value(datas, value, is_input):
     if is_input:
         data = {
-            'type': 'entrada',
+            'type': 'Entrada',
             'quant': value.quantity,
-            'created_at': value.created_at,
+            'created_at': value.created_at.strftime('%d/%m/%y às %H:%M:%S'),
             'product': value.product.name,
         }
         datas.append(data)
     else:
         data = {
-            'type': 'saida',
+            'type': 'Saida',
             'quant': value.quantity,
-            'created_at': value.created_at,
+            'created_at': value.created_at.strftime('%d/%m/%y às %H:%M:%S'),
             'product': value.product.name,
         }
         datas.append(data)
@@ -48,7 +48,7 @@ def list_mov(request):
         elif o < quant_out:
             include_value(datas, outputs[o], False)
             o += 1
-    return render(request, 'list_mov.html', {'data': datas})
+    return render(request, 'list_mov.html', {'datas': datas})
 
 
 def new_lots(request):

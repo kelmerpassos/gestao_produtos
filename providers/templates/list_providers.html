@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block submain %}
+    <h1 class="text-center lead">Listagem de Fornecedores</h1>
     <div class="container">
         <a href="{% url 'new_providers' %}" class="btn btn-primary">Criar Novo Fornecedor</a>
     </div>
@@ -11,20 +12,21 @@
                     <th>#</th>
                     <th>Nome</th>
                     <th>CNPJ</th>
-                    <th></th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 {% for provider in providers %}
                     <tr>
-                        <td><a href="{% url 'update_providers' provider.id %}">{{provider.id}}</td>
-                        <td><a href="{% url 'update_providers' provider.id %}">{{provider.name}}</td>
-                        <td><a href="{% url 'update_providers' provider.id %}">{{provider.cnpj}}</td>
-                            <td>
-                                <a class="btn btn-danger text-light" data-toggle="modal" data-target="#deleteModal"
-                                data-name="{{ provider.name }}" data-id="{{ product.id }}"
-                                data-classname="providers">Deletar</a>
-                            </td>
+                        <td>{{provider.id}}</td>
+                        <td>{{provider.name}}</td>
+                        <td>{{provider.cnpj}}</td>
+                        <td class="cel-action">
+                            <a class="btn btn-primary" href="{% url 'update_providers' provider.id%}">Alterar</a>
+                            <a class="btn btn-danger text-light" data-toggle="modal" data-target="#deleteModal"
+                            data-name="{{ provider.name }}" data-id="{{ provider.id }}"
+                            data-classname="providers">Deletar</a>          
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

@@ -13,7 +13,7 @@ def new_providers(request):
     form = ProviderForm(request.POST or None)
     if form.is_valid():
         form.save()
-        redirect('list_providers')
+        return redirect('list_providers')
     return render(request, 'generic_form.html', {'form': form})
 
 
@@ -22,11 +22,11 @@ def update_providers(request, id):
     form = ProviderForm(request.POST or None, instance=provider)
     if form.is_valid():
         form.save()
-        redirect('list_providers')
+        return redirect('list_providers')
     return render(request, 'generic_form.html', {'form': form})
 
 
 def delete_providers(request, id):
     provider = get_object_or_404(Provider, pk=id)
     provider.delete()
-    redirect('list_providers')
+    return redirect('list_providers')

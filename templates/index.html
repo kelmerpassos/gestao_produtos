@@ -31,9 +31,11 @@
       </div>
     </nav>
 {% endblock %}
-
-
+           
 {% block main %}
+    {% if request.path == '/' %}
+    <div class="display-4 text-center">Bem vindo, {{user.username}}</div>
+    {% endif %}     
     {% block submain %}
 
     {% endblock %}

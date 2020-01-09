@@ -1,12 +1,13 @@
 {% extends 'index.html' %}
 
 {% block submain %}
+    <h1 class="text-center lead">Listagem de Movimentações</h1>
     <div class="container">
         <a href="{% url 'new_lots' %}" class="btn btn-primary">Criar Novo Lote</a>
     </div>
     <article class="mt-5">
-        <table class="table">
-            <thead>
+        <table class="table table-striped">
+            <thead class="bg-primary">
                 <tr>
                     <th>Tipo</th>
                     <th>Produto</th>
@@ -16,8 +17,12 @@
             </thead>
             <tbody>
                 {% for data in datas %}
-                    <tr>
-                        <td>{{ data.type }}</td>
+                    {% if data.type == 'Entrada' %}
+                    <tr class="text-success">
+                    {% else %}
+                    <tr class="text-danger"> 
+                    {% endif %}   
+                        <td>{{ data.type }}</td>        
                         <td>{{ data.product }}</td>
                         <td>{{ data.quant }}</td>
                         <td>{{ data.created_at }}</td>
