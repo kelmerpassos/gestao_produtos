@@ -1,5 +1,5 @@
 from lots.models import InputLot, OutputLot
-from products.forms import ModelForm
+from django.forms import ModelForm
 
 
 class InputLotForm(ModelForm):
@@ -18,4 +18,4 @@ class OutputLotForm(ModelForm):
         """Meta definition for OutputLotform."""
 
         model = OutputLot
-        fields = ('number_output', 'quantity', 'product')
+        fields = ('number_output', 'quantity', 'product')  

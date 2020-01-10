@@ -3,7 +3,7 @@
 {% block submain %}
     <h1 class="text-center lead">Listagem de Saídas</h1>
     <div class="container">
-        <a href="{% url 'new_input' %}" class="btn btn-primary">Criar Nova Saída</a>
+        <a href="{% url 'new_output' %}" class="btn btn-primary">Criar Nova Saída</a>
     </div>
     <article class="mt-5">
         <table class="table table-striped">
@@ -17,7 +17,7 @@
             </thead>
             <tbody>
                 {% for output in outputs %}
-                    <tr>  
+                    <tr class="text-danger">  
                         <td>{{ output.number_output }}</td>        
                         <td>{{ output.quantity }}</td>
                         <td>{{ output.product.name }}</td>

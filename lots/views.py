@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 
+from lots.forms import InputLotForm, OutputLotForm
 from lots.models import InputLot, OutputLot
 from products.models import Product
 
@@ -25,20 +26,6 @@ def include_value(datas, value, is_input):
             'product': value.product.name,
         }
         datas.append(data)
-
-
-def balance_mov(request):
-    produts = Product.objects.all()
-    balances = []
-    for product in produts:
-        quantity = 0
-        for prod_input in product.inputlot_set.all():
-            quantity = prod_input.quantity
-        for prod_output in product.outputlote_set.all():
-            quantity = prod_output.quantity
-        balances.append({'name': product.name, 'quantity': quantity})
-    return render(request, 'balance.html', {'balances': balances})
-        
 
 
 def list_mov(request):
@@ -67,36 +54,85 @@ def list_mov(request):
 
 
 def list_input(request):
-    inputs = InputLot.objects.all()
+    inputs = InputLot.objects.order_by('-created_at')
     my_formatdate(inputs)
     return render(request, 'list_input.html', {'inputs': inputs})
 
 
 def new_input(request):
-    pass
+    form = InputLotForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('list_input')
+    return render(
+        request, 
+        'generic_form.html',{
+            'form': form,
+            'title': 'Cadastrar Entrada',
+            'roth': 'http://localhost:8000/lots/input/list/'
+        }
+    )
+
+def update_input(request, id):
+    input_lot = get_object_or_404(InputLot, pk=id)
+    form = InputLotForm(request.POST or None, instance=input_lot)
+    if form.is_valid():
+        form.save()
+        return redirect('list_input')
+    return render(
+        request, 
+        'generic_form.html',{
+            'form': form,
+            'title': f'Editar Saída {str(input_lot.number_input)}',
+            'roth': 'http://localhost:8000/lots/input/list/'
+        }
+    )
 
 
-def update_input(request):
-    pass
-
-
-def delete_input(request):
-    pass
+def delete_input(request, id):
+    input_lot = get_object_or_404(InputLot, pk=id)
+    input_lot.delete()
+    redirect('list_input')
 
 
 def list_output(request):
-    outputs = OutputLot.objects.all()
+    outputs = OutputLot.objects.order_by('-created_at')
     format(outputs)
     return render(request, 'list_output.html', {'outputs': outputs})
 
 
 def new_output(request):
-    pass
+    form = OutputLotForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect ('list_ouput')
+    return render(
+        request,
+        'generic_form.html',{
+            'form': form,
+            'title': 'Cadastrar Saída',
+            'roth': 'http://localhost:8000/lots/output/list/'
+        }
+    )
 
 
-def update_output(request):
-    pass
+def update_output(request, id):
+    output_lot = get_object_or_404(OutputLot, pk=id)
+    form = OutputLotForm(request.POST or None, instance=output_lot)
+    if form.is_valid():
+        form.save()
+        return redirect ('list_output')
+    return render(
+        request,
+        'generic_form.html',{
+            'form': form,
+            'title': f'Editar Saída {str(output_lot.number_output)}',
+            'roth': 'http://localhost:8000/lots/output/list/'
+        }
+    )
 
 
-def delete_output(request):
-    pass
+def delete_output(request, id):
+    output_lot = get_object_or_404(OutputLot, pk=id)
+    output_lot.delete()
+    redirect('list_output')

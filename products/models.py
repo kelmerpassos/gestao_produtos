@@ -8,6 +8,6 @@ class Product(models.Model):
     provider = models.ForeignKey(Provider, on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='products_photos', blank=True, null=True)
-
+    objects = models.Manager()
     def __str__(self):
         return self.name

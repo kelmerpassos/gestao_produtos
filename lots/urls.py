@@ -1,8 +1,8 @@
 from django.urls import path
 
-from lots.views import (delete_input, delete_output, list_input, list_mov,
-                        list_output, new_input, new_output, update_input,
-                        update_output)
+from lots.views import (delete_input, delete_output, list_input,
+                        list_mov, list_output, new_input, new_output,
+                        update_input, update_output)
 
 urlpatterns = [
     path('mov/list/', list_mov, name='list_mov'),
