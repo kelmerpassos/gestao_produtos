@@ -15,4 +15,4 @@ JavaScript-code-snippets
 jquery-code-snippets
 Python
 Rainglow
-vscode-database
+intellisense-for-css

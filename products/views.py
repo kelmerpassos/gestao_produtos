@@ -14,7 +14,15 @@ def new_products(request):
     if form.is_valid():
         form.save()
         return redirect('list_products')
-    return render(request, 'generic_form.html', {'form': form, 'title':'Criar Produtos'})
+    return render(
+        request, 
+        'generic_form.html', 
+        {
+            'form': form, 
+            'title':'Criar Produtos', 
+            'roth': 'http://localhost:8000/products/list/'
+        }
+    )
 
 
 def update_products(request, id):
@@ -23,7 +31,15 @@ def update_products(request, id):
     if form.is_valid():
         form.save()
         return redirect('list_products')
-    return render(request, 'generic_form.html', {'form': form, 'title': f'Editar {product.name}'})
+    return render(
+        request, 
+        'generic_form.html', 
+        {
+            'form': form, 
+            'title': f'Editar {product.name}', 
+            'roth': 'http://localhost:8000/products/list/'
+        }
+    )
 
 
 def delete_products(request, id):
