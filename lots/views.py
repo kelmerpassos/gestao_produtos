@@ -1,7 +1,12 @@
 from django.shortcuts import render
 
 from lots.models import InputLot, OutputLot
+from products.models import Product
 
+
+def my_formatdate(list_data):
+    for data in list_data:
+        data.created_at = data.created_at.strftime('%d/%m/%y às %H:%M:%S')
 
 def include_value(datas, value, is_input):
     if is_input:
@@ -22,8 +27,18 @@ def include_value(datas, value, is_input):
         datas.append(data)
 
 
-def saldo_mov(request):
-    pass
+def balance_mov(request):
+    produts = Product.objects.all()
+    balances = []
+    for product in produts:
+        quantity = 0
+        for prod_input in product.inputlot_set.all():
+            quantity = prod_input.quantity
+        for prod_output in product.outputlote_set.all():
+            quantity = prod_output.quantity
+        balances.append({'name': product.name, 'quantity': quantity})
+    return render(request, 'balance.html', {'balances': balances})
+        
 
 
 def list_mov(request):
@@ -51,13 +66,37 @@ def list_mov(request):
     return render(request, 'list_mov.html', {'datas': datas})
 
 
-def new_lots(request):
+def list_input(request):
+    inputs = InputLot.objects.all()
+    my_formatdate(inputs)
+    return render(request, 'list_input.html', {'inputs': inputs})
+
+
+def new_input(request):
     pass
 
 
-def update_lots(request):
+def update_input(request):
     pass
 
 
-def delete_lots(request):
+def delete_input(request):
+    pass
+
+
+def list_output(request):
+    outputs = OutputLot.objects.all()
+    format(outputs)
+    return render(request, 'list_output.html', {'outputs': outputs})
+
+
+def new_output(request):
+    pass
+
+
+def update_output(request):
+    pass
+
+
+def delete_output(request):
     pass

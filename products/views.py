@@ -14,7 +14,7 @@ def new_products(request):
     if form.is_valid():
         form.save()
         return redirect('list_products')
-    return render(request, 'generic_form.html', {'form': form})
+    return render(request, 'generic_form.html', {'form': form, 'title':'Criar Produtos'})
 
 
 def update_products(request, id):
@@ -23,7 +23,7 @@ def update_products(request, id):
     if form.is_valid():
         form.save()
         return redirect('list_products')
-    return render(request, 'generic_form.html', {'form': form})
+    return render(request, 'generic_form.html', {'form': form, 'title': f'Editar {product.name}'})
 
 
 def delete_products(request, id):

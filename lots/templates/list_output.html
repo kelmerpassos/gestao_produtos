@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block submain %}
+    <h1 class="text-center lead">Listagem de Saídas</h1>
+    <div class="container">
+        <a href="{% url 'new_input' %}" class="btn btn-primary">Criar Nova Saída</a>
+    </div>
+    <article class="mt-5">
+        <table class="table table-striped">
+            <thead class="bg-primary text-light">
+                <tr>
+                    <th>Número</th>
+                    <th>Quantidade</th>
+                    <th>Produto</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for output in outputs %}
+                    <tr>  
+                        <td>{{ output.number_output }}</td>        
+                        <td>{{ output.quantity }}</td>
+                        <td>{{ output.product.name }}</td>
+                        <td>{{ output.created_at}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </article>
+     
+{% endblock submain %}
+    

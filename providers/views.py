@@ -14,7 +14,7 @@ def new_providers(request):
     if form.is_valid():
         form.save()
         return redirect('list_providers')
-    return render(request, 'generic_form.html', {'form': form})
+    return render(request, 'generic_form.html', {'form': form, 'title':'Criar Provedor'})
 
 
 def update_providers(request, id):
@@ -23,7 +23,7 @@ def update_providers(request, id):
     if form.is_valid():
         form.save()
         return redirect('list_providers')
-    return render(request, 'generic_form.html', {'form': form})
+    return render(request, 'generic_form.html', {'form': form, 'title': f'Editar {provider.name}'})
 
 
 def delete_providers(request, id):
