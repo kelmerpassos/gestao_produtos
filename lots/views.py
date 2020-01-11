@@ -26,7 +26,18 @@ def include_value(datas, value, is_input):
             'product': value.product.name,
         }
         datas.append(data)
-
+        
+def balance_mov(request):
+    produts = Product.objects.all()
+    balances = []
+    for product in produts:
+        quantity = 0
+        for prod_input in product.inputlot_set.all():
+            quantity = prod_input.quantity
+        for prod_output in product.outputlot_set.all():
+            quantity = prod_output.quantity
+        balances.append({'name': product.name, 'quantity': quantity})
+    return render(request, 'balance.html', {'balances': balances})
 
 def list_mov(request):
     datas = []
@@ -52,12 +63,10 @@ def list_mov(request):
             o += 1
     return render(request, 'list_mov.html', {'datas': datas})
 
-
 def list_input(request):
     inputs = InputLot.objects.order_by('-created_at')
     my_formatdate(inputs)
     return render(request, 'list_input.html', {'inputs': inputs})
-
 
 def new_input(request):
     form = InputLotForm(request.POST or None)
