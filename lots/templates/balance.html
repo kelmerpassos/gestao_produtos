@@ -11,10 +11,10 @@
                 </tr>
             </thead>
             <tbody>
-                {% for data in datas %}
+                {% for data in balances %}
                     <tr>         
                         <td>{{ data.name }}</td>
-                        <td>{{ data.quant }}</td>
+                        <td>{{ data.quantity }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

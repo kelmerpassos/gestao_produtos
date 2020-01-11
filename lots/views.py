@@ -101,7 +101,7 @@ def update_input(request, id):
 def delete_input(request, id):
     input_lot = get_object_or_404(InputLot, pk=id)
     input_lot.delete()
-    redirect('list_input')
+    return redirect('list_input')
 
 
 def list_output(request):
@@ -114,7 +114,7 @@ def new_output(request):
     form = OutputLotForm(request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect ('list_ouput')
+        return redirect ('list_output')
     return render(
         request,
         'generic_form.html',{
@@ -144,4 +144,4 @@ def update_output(request, id):
 def delete_output(request, id):
     output_lot = get_object_or_404(OutputLot, pk=id)
     output_lot.delete()
-    redirect('list_output')
+    return redirect('list_output')
